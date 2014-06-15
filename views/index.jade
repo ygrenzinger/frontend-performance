@@ -3,15 +3,22 @@ extends layout
 block body
   div(ng-controller='AppCtrl')
     h2(app-version)
-    span.prepend.append.field
-      span.adjoined Price every ms
-      input(class="xnarrow text input", type="text", placeholder="Text input", ng-model="interval")
-      div.medium.primary.btn.ttip(ng-click="changeInterval()", data-tooltip="icon-info") Change
+    div.row
+      div.four.columns
+        form.prepend.append.field(ng-submit="changeInterval()")
+          span.adjoined New prices every
+          input(class="narrow text input", type="text", placeholder="Text input", ng-model="interval")
+          span.adjoined ms
 
-    span.prepend.append.field
-      span.adjoined Number of companies
-      input(class="xnarrow text input", type="text", placeholder="Text input", ng-model="nbCompanies")
-      div.medium.primary.btn.ttip(ng-click="changeNbCompanies()", data-tooltip="icon-info") Change
+      div.four.columns
+        form.append.field(ng-submit="changeNbCompanies()")
+          input(class="narrow text input", type="number", min="1", max="500", ng-model="nbCompanies")
+          span.adjoined companies
+
+      div.four.columns
+        form.append.field(ng-submit="changeNbPricesGenerated()")
+          input(class="narrow text input", type="number", min="1", max="500", ng-model="nbPricesGenerated")
+          span.adjoined prices changing
 
     ul.menu
       li

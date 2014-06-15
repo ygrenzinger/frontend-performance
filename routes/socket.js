@@ -39,8 +39,8 @@ module.exports = function(socket) {
     var symbols = _.map(stocks, function(stock){
       return stock.symbol;
     });
-
-    for (var i = 0; i < api.nbCompanies(); i++) {
+    var nbToChange = api.nbCompanies() < api.nbPricesGenerated() ? api.nbCompanies() : api.nbPricesGenerated();
+    for (var i = 0; i < nbToChange; i++) {
       var symbol = symbols[_.random(0, api.nbCompanies() - 1)];
       var stock = allStocks[symbol];
       var variation = _.random(-0.9, 0.9) * api.interval() / 1000;
