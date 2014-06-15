@@ -1,0 +1,17 @@
+{
+  "name": "application-name",
+  "version": "0.0.0",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components"
+  ],
+  "dependencies": {
+    "angular": "~1.2.14",
+    "angular-socket-io": "~0.3.0",
+    "angular-route": "~1.2.14",
+    "lodash": "~2.4.1",
+    "gumby": "~2.6.3",
+    "react": "~0.10.0"
+  }
+}

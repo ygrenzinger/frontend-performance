@@ -1,0 +1,21 @@
+p This is the partial for Angular.
+p New prices received for time {{time}}
+div.row
+  div.twelve.columns
+    table#stocks
+      thead
+        tr
+          th.symbol Symbol
+          th.price Price
+          th.variation Variation
+          th.company Company
+          th.sector Sector
+          th.industry Industry
+      tbody
+        tr(ng-repeat="stock in stocks | orderBy: 'price':true")(ng-class="getVariationClass(stock.variation);")
+          td.symbol {{stock.symbol}}
+          td.price {{stock.price}}
+          td.variation {{stock.variation}}
+          td.company {{stock.company}}
+          td.sector {{stock.sector}}
+          td.industry {{stock.industry}}
