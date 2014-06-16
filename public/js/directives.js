@@ -8,8 +8,9 @@ var MYSTOCKS = React.createClass({
   render: function() {
 
     var stocks = this.props.stocks;
-    if (stocks.length > 0) {
-      var rows = stocks.map(function(stock) {
+    var rows = [];
+    if (stocks) {
+      rows = stocks.map(function(stock) {
         var classString
         var clickHandler = function(ev) {
           console.log("Still in reactJs");
@@ -31,9 +32,21 @@ var MYSTOCKS = React.createClass({
     }
 
     return (
-      React.DOM.table(null,
-        rows
-      )
+      <table>
+        <thead>
+          <tr>
+            <th className="symbol">Symbol</th>
+            <th className="price">Price</th>
+            <th className="variation">Variation</th>
+            <th className="company">Company</th>
+            <th className="sector">Sector</th>
+            <th className="industry">Industry</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows}
+        </tbody>
+      </table>
     );
   }
 });
