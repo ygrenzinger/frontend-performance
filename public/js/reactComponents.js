@@ -1,17 +1,20 @@
-'use strict';
-
-/* Directives */
-
-
+/** @jsx React.DOM */
 var MYSTOCKS = React.createClass({
   displayName: 'MYSTOCKS',
   render: function() {
-
     var stocks = this.props.stocks;
     var rows = [];
     if (stocks) {
       rows = stocks.map(function(stock) {
-        var classString
+
+        var variationClass = '';
+        var variation = parseFloat(stock['variation']);
+        if (variation < 0) {
+          variationClass  = "down";
+        } else if (variation > 0) {
+          variationClass  = "up";
+        }
+
         var clickHandler = function(ev) {
           console.log("Still in reactJs");
           console.log(ev);
@@ -19,13 +22,15 @@ var MYSTOCKS = React.createClass({
 
         return (
           React.DOM.tr({
+              className:variationClass,
               onClick: clickHandler
             },
             React.DOM.td(null, stock['symbol']),
             React.DOM.td(null, stock['price']),
-            React.DOM.td(null, stock['variation']),
+            React.DOM.td(null, variation),
             React.DOM.td(null, stock['company']),
-            React.DOM.td(null, stock['sector'])
+            React.DOM.td(null, stock['sector']),
+            React.DOM.td(null, stock['industry'])
           )
         );
       });
@@ -36,42 +41,17 @@ var MYSTOCKS = React.createClass({
         <thead>
           <tr>
             <th className="symbol">Symbol</th>
-            <th className="price">Price</th>
+            <th className="price">Price</th >
             <th className="variation">Variation</th>
             <th className="company">Company</th>
             <th className="sector">Sector</th>
             <th className="industry">Industry</th>
           </tr>
         </thead>
-        <tbody>
-          {rows}
-        </tbody>
-      </table>
-    );
+        <tbody> {
+          rows
+        } </tbody>
+        </table>
+    )
   }
 });
-
-angular.module('myApp.directives', [])
-  .directive('appVersion', function(appname) {
-    return function(scope, elm, attrs) {
-      elm.text(appname);
-    };
-  })
-  .directive('fastStocks', function() {
-    return {
-      restrict: 'E',
-      scope: {
-        stocks: '='
-      },
-      link: function(scope, el, attrs) {
-        scope.$watchCollection('stocks', function(newValue, oldValue) {
-          React.renderComponent(
-            MYSTOCKS({
-              stocks: newValue
-            }),
-            el[0]
-          );
-        })
-      }
-    }
-  });
