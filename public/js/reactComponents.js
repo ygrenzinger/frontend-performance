@@ -1,6 +1,33 @@
 /** @jsx React.DOM */
-var MYSTOCKS = React.createClass({
-  displayName: 'MYSTOCKS',
+var StockComponent = React.createClass({
+  displayName: 'StockComponent',
+  render: function() {
+
+    var stockClassname = "stock";
+    var variation = parseFloat(this.props.stock.variation);
+    if (variation < 0) {
+      stockClassname  += " down";
+    } else if (variation > 0) {
+      stockClassname  += " up";
+    }
+
+    return (
+      <div className={stockClassname}>
+        <div className="title">{this.props.stock.company}</div>
+        <div className="title">{this.props.stock.sector}</div>
+        <div className="title">{this.props.stock.industry}</div>
+        <div className="info">
+          <div className="symbol">{this.props.stock.symbol}</div>
+          <div className="price">{this.props.stock.price}$</div>
+          <div className="variation">{this.props.stock.variation}</div>
+        </div>
+      </div>
+    );
+  }
+});
+
+var StocksComponent = React.createClass({
+  displayName: 'StocksComponent',
   render: function() {
     var stocks = this.props.stocks;
     stocks = _.sortBy(stocks, 'price').reverse();
@@ -8,51 +35,23 @@ var MYSTOCKS = React.createClass({
     if (stocks) {
       rows = stocks.map(function(stock) {
 
-        var variationClass = '';
-        var variation = parseFloat(stock['variation']);
-        if (variation < 0) {
-          variationClass  = "down";
-        } else if (variation > 0) {
-          variationClass  = "up";
-        }
-
         var clickHandler = function(ev) {
           console.log("Still in reactJs");
           console.log(ev);
         }
 
         return (
-          React.DOM.tr({
-              className:variationClass,
-              onClick: clickHandler
-            },
-            React.DOM.td(null, stock['symbol']),
-            React.DOM.td(null, stock['price']),
-            React.DOM.td(null, variation),
-            React.DOM.td(null, stock['company']),
-            React.DOM.td(null, stock['sector']),
-            React.DOM.td(null, stock['industry'])
-          )
+          <StockComponent stock={stock} />
         );
       });
     }
 
     return (
-      <table>
-        <thead>
-          <tr>
-            <th className="symbol">Symbol</th>
-            <th className="price">Price</th >
-            <th className="variation">Variation</th>
-            <th className="company">Company</th>
-            <th className="sector">Sector</th>
-            <th className="industry">Industry</th>
-          </tr>
-        </thead>
-        <tbody> {
+      <div className="stocks">
+        {
           rows
-        } </tbody>
-        </table>
+        }
+      </div>
     )
   }
 });

@@ -14,9 +14,9 @@ angular.module('myApp.directives', [])
         stocks: '='
       },
       link: function(scope, el, attrs) {
-        scope.$watchCollection('stocks', function(newValue, oldValue) {
+        scope.$watch('stocks', function(newValue, oldValue) {
           React.renderComponent(
-            MYSTOCKS({
+            StocksComponent({
               stocks: newValue
             }),
             el[0]

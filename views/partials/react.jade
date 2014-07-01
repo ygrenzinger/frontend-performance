@@ -1,15 +1,5 @@
 p This is the partial for React.
 p New prices received for time {{time}}
 
-div.row
-  div.twelve.columns
-    table#stocks
-      thead
-        tr
-          th.symbol Symbol
-          th.price Price
-          th.variation Variation
-          th.company Company
-          th.sector Sector
-          th.industry Industry
-      <fast-stocks stocks="stocks"></fast-stocks>
+div.stocks
+  <fast-stocks stocks="stocks"></fast-stocks>

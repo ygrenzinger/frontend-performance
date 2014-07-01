@@ -1,4 +1,9 @@
 /* app css stylesheet */
+html {
+  font-family: Arial, Helvetica, sans-serif;
+  color: black;
+}
+
 .menu {
   list-style: none;
   border-bottom: 0.1em solid black;
@@ -28,33 +33,52 @@
   padding: 0;
 }
 
+.stocks {
+  margin: 0 auto;
+}
 
-#stocks {
-  width: 100%;
+.stock {
+  display: inline-block;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin: 2px;
+  padding: 2px;
+  width: 180px;
+}
+
+.title {
+  max-width: 175px;
+  text-align: center;
+  font-size: 0.8em;
+  overflow: hidden;
+  white-space: nowrap; /* Don't forget this one */
+  text-overflow: ellipsis;
 }
 
 .symbol {
-  width: 80px;
-}
-.price {
-  width: 50px;
-}
-.variation {
-  width: 50px;
-}
-.company {
-  width: 100px;
-}
-.sector {
-  width: 300px;
-}
-.industry {
-  width: 300px;
+  display: inline-block;
+  width: 30%;
+  text-align: center;
+  font-weight:bold;
 }
 
-tr.up {
- background-color: #00CC00;
+.price {
+  display: inline-block;
+  width: 39%;
+  text-align: center;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
 }
-tr.down {
- background-color: #FF0000;
+
+.variation {
+  display: inline-block;
+  width: 30%;
+  text-align: center;
+}
+
+.stock.up {
+ background-color: #64FF64;
+}
+.stock.down {
+ background-color: #FF6464;
 }
