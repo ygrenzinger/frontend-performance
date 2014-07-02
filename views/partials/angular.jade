@@ -1,7 +1,7 @@
 p This is the partial for Angular.
 p New prices received for time {{time}}
 div.stocks
-  div.stock(ng-repeat="stock in stocks | orderBy: 'price':true")(ng-class="getVariationClass(stock.variation);")
+  div.stock(ng-repeat="stock in stocks | orderBy: orderBy:true")(ng-class="getVariationClass(stock.variation);")
     div.title {{stock.company}}
     div.title {{stock.sector}}
     div.title {{stock.industry}}

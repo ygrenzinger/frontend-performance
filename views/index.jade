@@ -4,21 +4,29 @@ block body
   div(ng-controller='AppCtrl')
     h2(app-version)
     div.row
-      div.four.columns
+      div.three.columns
         form.prepend.append.field(ng-submit="changeInterval()")
           span.adjoined New prices every
           input(class="narrow text input", type="text", placeholder="Text input", ng-model="interval")
           span.adjoined ms
 
-      div.four.columns
+      div.three.columns
         form.append.field(ng-submit="changeNbCompanies()")
           input(class="narrow text input", type="number", min="1", max="500", ng-model="nbCompanies")
           span.adjoined companies
 
-      div.four.columns
+      div.three.columns
         form.append.field(ng-submit="changeNbPricesGenerated()")
           input(class="narrow text input", type="number", min="1", max="500", ng-model="nbPricesGenerated")
           span.adjoined prices changing
+
+      div.three.columns
+        form.append.field
+          span.adjoined sort by
+          select(class="text input", ng-model="orderBy")
+            option(value="price") price
+            option(value="symbol") symbol
+            option(value="variation") variation
 
     ul.menu
       li

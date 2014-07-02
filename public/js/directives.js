@@ -11,17 +11,23 @@ angular.module('myApp.directives', [])
     return {
       restrict: 'E',
       scope: {
-        stocks: '='
+        stocks: '=',
+        orderBy: '='
       },
       link: function(scope, el, attrs) {
-        scope.$watch('stocks', function(newValue, oldValue) {
+        var orderBy = 'price';
+        scope.$watch('orderBy', function(newValue) {
+          orderBy = newValue;
+        });
+        scope.$watch('stocks', function(newValue) {
           React.renderComponent(
             StocksComponent({
-              stocks: newValue
+              stocks: newValue,
+              orderBy: orderBy
             }),
             el[0]
           );
-        })
+        });
       }
     }
   });

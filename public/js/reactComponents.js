@@ -30,7 +30,7 @@ var StocksComponent = React.createClass({
   displayName: 'StocksComponent',
   render: function() {
     var stocks = this.props.stocks;
-    stocks = _.sortBy(stocks, 'price').reverse();
+    stocks = _.sortBy(stocks, this.props.orderBy).reverse();
     var rows = [];
     if (stocks) {
       rows = stocks.map(function(stock) {

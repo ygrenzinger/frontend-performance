@@ -4,6 +4,8 @@
 
 angular.module('myApp.controllers', []).
 controller('AppCtrl', function($scope, $http, socket) {
+  $scope.orderBy = 'price';
+
   $http.get("/api/interval").success(function(interval) {
     $scope.interval = parseInt(interval);
   });
